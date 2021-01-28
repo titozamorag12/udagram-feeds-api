@@ -18,7 +18,7 @@ import { V0_FEED_MODELS } from './controllers/v0/model.index';
   const app = express();
   const logger = bunyan.createLogger({ name: 'My App' });
 
-  const port = process.env.PORT || 8082;
+  const port = process.env.PORT || 8080;
 
   app.use(bunyanMiddleware(
     {

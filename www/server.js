@@ -25,7 +25,7 @@ const model_index_1 = require("./controllers/v0/model.index");
     yield sequelize_1.sequelize.sync();
     const app = express_1.default();
     const logger = bunyan_1.default.createLogger({ name: 'My App' });
-    const port = process.env.PORT || 8082;
+    const port = process.env.PORT || 8080;
     app.use(bunyan_middleware_1.default({
         headerName: 'X-Request-Id',
         propertyName: 'reqId',
