@@ -22,6 +22,7 @@ const AWS = __importStar(require("../../../../aws"));
 const c = __importStar(require("../../../../config/config"));
 const router = express_1.Router();
 function requireAuth(req, res, next) {
+    console.log("New REQUIRE FEEDS AUTH request from ID: " + req.reqId);
     if (!req.headers || !req.headers.authorization) {
         return res.status(401).send({ message: 'No authorization headers.' });
     }
@@ -40,6 +41,7 @@ function requireAuth(req, res, next) {
 exports.requireAuth = requireAuth;
 // Get all feed items
 router.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    console.log("New GET ALL FEEDS request from ID: " + req.reqId);
     const items = yield FeedItem_1.FeedItem.findAndCountAll({ order: [['id', 'DESC']] });
     items.rows.map((item) => {
         if (item.url) {
@@ -50,18 +52,21 @@ router.get('/', (req, res) => __awaiter(this, void 0, void 0, function* () {
 }));
 // Get a feed resource
 router.get('/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    console.log("New GET FEED ID request from ID: " + req.reqId);
     const { id } = req.params;
     const item = yield FeedItem_1.FeedItem.findByPk(id);
     res.send(item);
 }));
 // Get a signed url to put a new item in the bucket
 router.get('/signed-url/:fileName', requireAuth, (req, res) => __awaiter(this, void 0, void 0, function* () {
+    console.log("New GET SIGNED URL FROM S3 request from ID: " + req.reqId);
     const { fileName } = req.params;
     const url = AWS.getPutSignedUrl(fileName);
     res.status(201).send({ url: url });
 }));
 // Create feed with metadata
 router.post('/', requireAuth, (req, res) => __awaiter(this, void 0, void 0, function* () {
+    console.log("New POST FEED request from ID: " + req.reqId);
     const caption = req.body.caption;
     const fileName = req.body.url; // same as S3 key name
     if (!caption) {
