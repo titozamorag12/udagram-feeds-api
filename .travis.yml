@@ -15,8 +15,8 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t simple-node .
-  - docker tag simple-node gzamorasosa12/udagram-feeds-api:latest
+  - docker build -t udagram-feeds-api .
+  - docker tag udagram-feeds-api gzamorasosa12/udagram-feeds-api:latest
 
 # Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
 after_success:
