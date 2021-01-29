@@ -1,4 +1,3 @@
-import cors from 'cors';
 import express from 'express';
 import bunyan from 'bunyan';
 import bunyanMiddleware from 'bunyan-middleware';
@@ -34,8 +33,6 @@ import { V0_FEED_MODELS } from './controllers/v0/model.index';
   ));
 
   app.use(bodyParser.json());
-
-  app.use(cors());
 
   app.use('/api/v0/', IndexRouter);
 
