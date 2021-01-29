@@ -18,4 +18,4 @@ spec:
       - name: udagram-feeds-api
         image: gzamorasosa12/udagram-feeds-api
         ports:
-        - containerPort: 8082
+        - containerPort: 8080
